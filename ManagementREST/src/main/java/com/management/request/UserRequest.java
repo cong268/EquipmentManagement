@@ -1,5 +1,7 @@
 package com.management.request;
 
+import com.management.entity.ERole;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,4 +14,5 @@ public class UserRequest {
 	private String passWord;
 	private String fullName;
 	private String email;
+	private ERole roleName;
 }

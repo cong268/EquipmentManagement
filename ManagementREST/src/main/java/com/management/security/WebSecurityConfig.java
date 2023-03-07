@@ -14,7 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.management.service.Impl.UserDetailsServiceImpl;
+import com.management.service.Impl.UserDetailsImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -24,7 +24,7 @@ import com.management.service.Impl.UserDetailsServiceImpl;
 		prePostEnabled = true)
 public class WebSecurityConfig {
 	@Autowired
-	UserDetailsServiceImpl userDetailsService;
+	UserDetailsImpl userDetailsService;
 	
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;
@@ -55,7 +55,7 @@ public class WebSecurityConfig {
 			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and().authorizeRequests().antMatchers("/api/auth/**").permitAll()
-			.antMatchers("/api/test/**").permitAll()
+			.antMatchers("/api/rest/**").permitAll()
 			.anyRequest()
 			.authenticated();
 
