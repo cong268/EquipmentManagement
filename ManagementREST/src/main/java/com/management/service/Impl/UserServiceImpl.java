@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.management.entity.Role;
 import com.management.entity.User;
+import com.management.payload.request.UserRequest;
 import com.management.repository.RoleRepository;
 import com.management.repository.UserRepository;
-import com.management.request.UserRequest;
 import com.management.service.UserService;
 
 @Service

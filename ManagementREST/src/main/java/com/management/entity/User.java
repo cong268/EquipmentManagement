@@ -46,6 +46,7 @@ public class User {
 	@Size(max = 50)
 	@Email
 	private String email;
+	private Long parentId;
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(	name = "tb_user_roles", 
 				joinColumns = @JoinColumn(name = "user_id"), 

@@ -1,4 +1,4 @@
-package com.management.request;
+package com.management.payload.request;
 
 import com.management.entity.ERole;
 

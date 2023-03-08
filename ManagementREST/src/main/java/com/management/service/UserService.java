@@ -1,6 +1,6 @@
 package com.management.service;
 
-import com.management.request.UserRequest;
+import com.management.payload.request.UserRequest;
 
 public interface UserService {
 	public Long createUser (UserRequest userRequest);
