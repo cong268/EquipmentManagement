@@ -52,8 +52,8 @@ public class AuthController {
 		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 
+		refreshTokenService.deleteByUserId(userDetails.getId());
 		RefreshToken refreshToken = refreshTokenService.createRefreshToken(userDetails.getId());
-
 		return ResponseEntity.ok(new JwtResponse(jwt, refreshToken.getRefreshToken(), userDetails.getId(),
 				userDetails.getUsername(), userDetails.getEmail(), roles));
 	}
@@ -65,14 +65,5 @@ public class AuthController {
 					String token = jwtUtils.generateTokenFromUsername(user.getUserName());
 					return ResponseEntity.ok(new TokenRefreshResponse(token, refreshToken));
 				}).orElseThrow(() -> new TokenRefreshException(refreshToken, "Refresh token is not in database!"));
-	}
-
-	@PostMapping("/signout")
-	public ResponseEntity<?> logoutUser() {
-		UserDetailsDTO userDetails = (UserDetailsDTO) SecurityContextHolder.getContext().getAuthentication()
-				.getPrincipal();
-		Long userId = userDetails.getId();
-		refreshTokenService.deleteByUserId(userId);
-		return ResponseEntity.ok("Log out successful!");
 	}
 }
