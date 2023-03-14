@@ -1,4 +1,4 @@
-package com.management.entity;
+package com.management.util;
 
 public enum ERole {
   ROLE_USER,

@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.management.service.Impl.UserDetailsImpl;
+import com.management.service.Impl.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -25,7 +25,7 @@ import com.management.service.Impl.UserDetailsImpl;
 		prePostEnabled = true)
 public class WebSecurityConfig {
 	@Autowired
-	UserDetailsImpl userDetailsService;
+	UserDetailsServiceImpl userDetailsService;
 	
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;

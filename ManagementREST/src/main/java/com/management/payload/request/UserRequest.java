@@ -1,6 +1,6 @@
 package com.management.payload.request;
 
-import com.management.entity.ERole;
+import com.management.util.ERole;
 
 import lombok.Builder;
 import lombok.Getter;

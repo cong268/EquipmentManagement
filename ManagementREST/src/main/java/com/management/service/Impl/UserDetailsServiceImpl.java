@@ -7,13 +7,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.management.dto.UserDetailsDTO;
 import com.management.entity.User;
 import com.management.repository.UserRepository;
+import com.management.vo.UserDetailsImpl;
 
 
 @Service
-public class UserDetailsImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
   @Autowired
   UserRepository userRepository;
 
@@ -23,7 +23,7 @@ public class UserDetailsImpl implements UserDetailsService {
     User user = userRepository.findByUserName(username)
         .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
 
-    return UserDetailsDTO.build(user);
+    return UserDetailsImpl.build(user);
   }
 
 }

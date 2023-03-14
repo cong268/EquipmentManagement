@@ -1,4 +1,4 @@
-package com.management.dto;
+package com.management.vo;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,7 +17,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UserDetailsDTO implements UserDetails {
+public class UserDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
@@ -31,7 +31,7 @@ public class UserDetailsDTO implements UserDetails {
 
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserDetailsDTO(Long id, String username, String email, String password,
+	public UserDetailsImpl(Long id, String username, String email, String password,
 			Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
 		this.username = username;
@@ -40,11 +40,11 @@ public class UserDetailsDTO implements UserDetails {
 		this.authorities = authorities;
 	}
 
-	public static UserDetailsDTO build(User user) {
+	public static UserDetailsImpl build(User user) {
 		List<GrantedAuthority> authorities = user.getRoles().stream()
 				.map(role -> new SimpleGrantedAuthority(role.getRoleName().name())).collect(Collectors.toList());
 
-		return new UserDetailsDTO(user.getId(), user.getUserName(), user.getEmail(), user.getPassWord(), authorities);
+		return new UserDetailsImpl(user.getId(), user.getUserName(), user.getEmail(), user.getPassWord(), authorities);
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class UserDetailsDTO implements UserDetails {
 			return true;
 		if (o == null || getClass() != o.getClass())
 			return false;
-		UserDetailsDTO user = (UserDetailsDTO) o;
+		UserDetailsImpl user = (UserDetailsImpl) o;
 		return Objects.equals(id, user.id);
 	}
 }

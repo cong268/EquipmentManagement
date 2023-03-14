@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.management.util.EStatus;
+
 import lombok.Data;
 
 @Entity
@@ -18,5 +20,5 @@ public class Department {
 	private Long id;
 	@Column(unique = true)
 	private String name;
-	private String status;
+	private EStatus status;
 }

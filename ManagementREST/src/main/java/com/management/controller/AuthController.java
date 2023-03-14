@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.management.dto.UserDetailsDTO;
 import com.management.entity.RefreshToken;
 import com.management.exception.TokenRefreshException;
 import com.management.payload.request.LoginRequest;
@@ -26,6 +25,7 @@ import com.management.payload.response.JwtResponse;
 import com.management.payload.response.TokenRefreshResponse;
 import com.management.security.JwtUtils;
 import com.management.service.RefreshTokenService;
+import com.management.vo.UserDetailsImpl;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -46,7 +46,7 @@ public class AuthController {
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		UserDetailsDTO userDetails = (UserDetailsDTO) authentication.getPrincipal();
+		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
 		String jwt = jwtUtils.generateJwtToken(userDetails);
 		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
